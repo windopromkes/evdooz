@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi SADARI - Jaga Kesehatanmu!</title>
+    <!-- Menggunakan font Google 'Fredoka' dan 'Quicksand' untuk kesan super cute -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Library Canvas Confetti untuk efek menang kuis -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Dekorasi Background Melayang -->
+    <div class="background-decorations">
+        <div class="bg-icon icon-1">🌸</div>
+        <div class="bg-icon icon-2">✨</div>
+        <div class="bg-icon icon-3">🎀</div>
+        <div class="bg-icon icon-4">💖</div>
+        <div class="bg-icon icon-5">☁️</div>
+        <div class="bg-icon icon-6">🍓</div>
+        <div class="bg-icon icon-7">🎈</div>
+        <div class="bg-icon icon-8">⭐</div>
+    </div>
+
+    <!-- Progress Bar Scroll -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in-on-scroll" id="beranda">
+        <div class="hero-content">
+            <h1>Kenali Tubuhmu,<br>Jaga Kesehatanmu! ✨</h1>
+            <p>Yuk, belajar cara gampang deteksi dini kanker payudara dengan <strong>SADARI</strong> (Periksa Payudara Sendiri).</p>
+            <a href="#video" class="btn-primary">Mulai Belajar</a>
+        </div>
+        <div class="hero-image">
+            <!-- Ganti src dengan ilustrasi chibi kamu -->
+            <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mimi&backgroundColor=ffdfed" alt="Karakter Chibi Tersenyum" class="floating">
+        </div>
+    </section>
+
+    <!-- Teks Berjalan (Marquee) -->
+    <div class="marquee-container">
+        <div class="marquee-text">
+            🌟 Kenali Tubuhmu Sejak Dini! 🌸 Jangan Takut Periksa Payudara Sendiri! 🎀 Semakin Cepat Tahu, Semakin Baik! 🌟 Kamu Hebat! 💪
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <section class="video-section fade-in-on-scroll" id="video">
+        <h2>Waktunya Nonton! Siapkan Camilanmu 🍿✨</h2>
+        <div class="video-container">
+            <!-- Kamu bisa mengganti URL src ini dengan link embed YouTube yang sebenarnya -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" title="Video Edukasi SADARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Apa itu Kanker Payudara -->
+    <section class="about-section fade-in-on-scroll">
+        <h2>Kenalan Dulu Yuk: Apa Sih Kanker Payudara Itu? 🦠🔍</h2>
+        <div class="card-container">
+            <div class="card">
+                <i class="fa-solid fa-microscope icon-pink"></i>
+                <p>Kanker payudara adalah kondisi ketika sel-sel di payudara tumbuh tidak normal dan tidak terkendali.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-shield-heart icon-blue"></i>
+                <p>Tidak perlu panik! Dengan mengenali tubuh kita sejak dini, kita bisa menjaga diri dan melakukan pencegahan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faktor Risiko -->
+    <section class="risk-section fade-in-on-scroll">
+        <h2>Awas! Musuh Bebuyutan Payudara Sehat 🛑🙅‍♀️</h2>
+        <p class="subtitle">Catat ya, hal-hal nakal ini harus kita hindari:</p>
+        <div class="grid-container">
+            <div class="risk-card">
+                <i class="fa-solid fa-burger"></i>
+                <h3>Pola Makan Kurang Sehat</h3>
+            </div>
+            <div class="risk-card">
+                <i class="fa-solid fa-smoking"></i>
+                <h3>Asap Rokok</h3>
+            </div>
+            <div class="risk-card">
+                <i class="fa-solid fa-people-roof"></i>
+                <h3>Riwayat Keluarga</h3>
+            </div>
+            <div class="risk-card">
+                <i class="fa-solid fa-bed"></i>
+                <h3>Kurang Olahraga</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara SADARI -->
+    <section class="steps-section fade-in-on-scroll" id="langkah">
+        <h2>Jurus Ampuh SADARI! Cuma 4 Langkah Kok 🎀✨</h2>
+        <p class="subtitle">Misi rahasia mendeteksi payudara, ikuti instruksi ini:</p>
+        <div class="timeline">
+            <div class="step-card">
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Step1&backgroundColor=cce7ff" alt="Langkah 1">
+                <div class="step-text">
+                    <h3>Langkah 1</h3>
+                    <p>Berdiri di depan cermin dan perhatikan apakah ada perubahan bentuk pada payudara.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Step2&backgroundColor=ffdfed" alt="Langkah 2">
+                <div class="step-text">
+                    <h3>Langkah 2</h3>
+                    <p>Angkat kedua tangan ke atas dan perhatikan lagi bentuk payudara dengan saksama.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Step3&backgroundColor=cce7ff" alt="Langkah 3">
+                <div class="step-text">
+                    <h3>Langkah 3</h3>
+                    <p>Raba payudara dengan 3 ujung jari (telunjuk, tengah, manis) secara perlahan dengan gerakan memutar.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Step4&backgroundColor=ffdfed" alt="Langkah 4">
+                <div class="step-text">
+                    <h3>Langkah 4</h3>
+                    <p>Perhatikan jika ada perubahan tidak biasa atau rasa sakit. Jika ada, beritahu orang tua atau dokter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fakta Penting -->
+    <section class="fact-section fade-in-on-scroll">
+        <div class="fact-card floating">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h2>Fakta Penting!</h2>
+            <p>"Semakin cepat ditemukan, semakin besar peluang penanganan yang baik dan kesembuhannya."</p>
+        </div>
+    </section>
+
+    <!-- Quiz Mini -->
+    <section class="quiz-section fade-in-on-scroll" id="quiz">
+        <h2>Tantangan Uji Otak Super Seru! Berani Coba? 🏆🚀</h2>
+        <div class="quiz-container">
+            <p class="question">Kapan waktu yang paling tepat untuk melakukan SADARI?</p>
+            <div class="options">
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A. Setiap hari sebelum mandi</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">B. Hari ke-7 sampai ke-10 setelah menstruasi</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">C. Setahun sekali saat ulang tahun</button>
+            </div>
+            <div id="quiz-result" class="quiz-result"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>❤️ Website Edukasi Kesehatan - SADARI ❤️</h2>
+        <p><small>Dibuat khusus untuk Sahabat Remaja yang Hebat!</small></p>
+        <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Star&backgroundColor=ffd1dc" alt="Star Chibi" width="60" class="floating" style="margin-top: 15px; border-radius: 50%;">
+    </footer>
+
+    <!-- Maskot Peeking (Kembali ke Atas) -->
+    <div class="peeking-mascot" id="backToTop" onclick="scrollToTop()">
+        <div class="tooltip">Ke Atas! 🚀</div>
+        <!-- Ganti dengan Avatar lucu lainnya -->
+        <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Lucky&backgroundColor=cce7ff" alt="Maskot">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

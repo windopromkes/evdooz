@@ -1,0 +1,577 @@
+/* Palet Warna Super Lucu (Soft Pastel + Warna Pop) */
+:root {
+    --pink-soft: #ffe4e6;
+    --pink-main: #f43f5e;
+    --pink-light: #fb7185;
+    --blue-soft: #e0f2fe;
+    --blue-main: #38bdf8;
+    --yellow-soft: #fef08a;
+    --text-color: #4c1d95; /* Warna teks ungu gelap agar lebih fun dari abu-abu */
+    --bg-color: #fff1f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    /* Motif Latar Belakang Polka Dot yang lucu */
+    background-image: radial-gradient(var(--pink-soft) 20%, transparent 20%);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Kursor Custom Lucu (Pita) di seluruh web */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">🎀</text></svg>'), auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Tipografi Bubbly / Membulat */
+h1, h2, h3 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--pink-main);
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    /* Faux stroke dari text-shadow agar garis outline murni ada di belakang huruf (luar), bukan ke dalam */
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
+                 -1px 0 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff,
+                 4px 4px 0px var(--pink-soft);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+/* Teks paragraf biasa juga diberi outline putih tipis agar terbaca jelas di atas pola latar */
+p, .subtitle {
+    text-shadow: -1px -1px 0px rgba(255,255,255,0.9),  
+                  1px -1px 0px rgba(255,255,255,0.9),
+                 -1px  1px 0px rgba(255,255,255,0.9),
+                  1px  1px 0px rgba(255,255,255,0.9);
+}
+
+/* Efek gemas saat judul dihover */
+h2:hover {
+    transform: scale(1.08) rotate(3deg);
+}
+
+/* Animasi Memantul (Bouncy) */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating {
+    animation: float 3.5s ease-in-out infinite;
+}
+
+/* --- Marquee (Teks Berjalan) Lucu --- */
+.marquee-container {
+    background: var(--yellow-soft);
+    border-top: 5px dashed #eab308;
+    border-bottom: 5px dashed #eab308;
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    transform: rotate(-2deg);
+    margin: 40px -20px; /* Supaya melebar hingga keluar batas normal */
+    box-shadow: 0 8px 0 #fef9c3;
+}
+
+.marquee-text {
+    display: inline-block;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.6em;
+    color: #b45309;
+    font-weight: 600;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    letter-spacing: 1px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 3px 3px 0px #fef08a;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Animasi Scroll Bouncy Ceria */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Animasi partikel efek klik */
+@keyframes popOut {
+    0% { transform: scale(0.5) translateY(0); opacity: 1; }
+    100% { transform: scale(1.8) translateY(-60px) rotate(20deg); opacity: 0; }
+}
+
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- Scroll Progress Bar Atas --- */
+.scroll-progress-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 8px;
+    background: var(--pink-soft);
+    z-index: 9999;
+}
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--pink-main);
+    border-radius: 0 10px 10px 0;
+}
+
+/* --- Maskot Ngintip / Back to Top --- */
+.peeking-mascot {
+    position: fixed;
+    bottom: -150px; /* Tersembunyi di bawah pada awalnya */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: bottom 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* Kursor Custom (Bintang) saat bisa diklik */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">✨</text></svg>'), pointer;
+}
+.peeking-mascot.show { bottom: 20px; }
+.peeking-mascot img { width: 80px; border-radius: 50%; border: 4px solid var(--blue-main); box-shadow: 0 5px 0 var(--blue-main); background: white; transition: transform 0.3s; }
+.peeking-mascot:hover img { transform: translateY(-10px) rotate(-10deg); }
+.peeking-mascot .tooltip { background: white; color: var(--blue-main); padding: 5px 12px; border-radius: 20px; font-family: 'Fredoka', sans-serif; font-size: 1em; font-weight: bold; border: 3px solid var(--blue-main); margin-bottom: 8px; opacity: 0; transform: translateY(10px); transition: all 0.3s; box-shadow: 0 4px 0 var(--blue-soft); }
+.peeking-mascot:hover .tooltip { opacity: 1; transform: translateY(0); }
+
+/* --- Dekorasi Melayang di Background --- */
+.background-decorations {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Supaya tidak mengganggu klik mouse */
+    z-index: 1; /* Berada di belakang konten utama */
+    overflow: hidden;
+}
+.bg-icon {
+    position: absolute;
+    opacity: 0.35; /* Dibuat agak transparan agar tidak mengganggu bacaan */
+    animation: floatDecor 6s ease-in-out infinite alternate;
+    filter: drop-shadow(2px 4px 0px rgba(0,0,0,0.05));
+}
+@keyframes floatDecor {
+    0% { transform: translateY(0px) rotate(0deg) scale(1); }
+    100% { transform: translateY(-30px) rotate(15deg) scale(1.1); }
+}
+/* Penempatan acak masing-masing ikon */
+.icon-1 { top: 10%; left: 5%; animation-delay: 0s; font-size: 3em; }
+.icon-2 { top: 40%; right: 5%; animation-delay: 1s; font-size: 2.5em; filter: blur(1px); /* Efek kamera blur */ }
+.icon-3 { bottom: 15%; left: 8%; animation-delay: 2s; font-size: 4em; opacity: 0.2; }
+.icon-4 { top: 20%; right: 18%; animation-delay: 0.5s; font-size: 2.2em; }
+.icon-5 { bottom: 30%; right: 12%; animation-delay: 1.5s; font-size: 3.5em; }
+.icon-6 { top: 65%; left: 15%; animation-delay: 2.5s; font-size: 2em; filter: blur(1px); }
+.icon-7 { top: -5%; left: 45%; animation-delay: 0.8s; font-size: 2.8em; }
+.icon-8 { bottom: -5%; left: 40%; animation-delay: 1.2s; font-size: 3em; }
+
+/* Bagian Umum */
+section {
+    padding: 60px 40px;
+    max-width: 1000px;
+    margin: 40px auto; /* Memberikan jarak antar kotak section */
+    text-align: center;
+    border-radius: 40px; /* Membuat setiap bagian seperti kartu raksasa */
+    background-color: white; /* Fallback warna */
+    position: relative;
+    z-index: 10; /* Memastikan kartu section berada di atas dekorasi */
+}
+
+/* Variasi Background Tiap Section (Gaya Kartu Raksasa 3D) */
+.hero, .fact-section {
+    /* Hero dan Fakta dibiarkan transparan menyatu dengan background utama */
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.video-section {
+    background-color: var(--blue-soft);
+    border: 6px solid var(--blue-main);
+    box-shadow: 0 15px 0 var(--blue-main);
+}
+
+.about-section {
+    background-color: #f3e8ff; 
+    /* Pola Bintik-bintik besar ungu */
+    background-image: radial-gradient(#d8b4fe 20%, transparent 20%);
+    background-position: 0 0, 15px 15px;
+    background-size: 30px 30px;
+    border: 6px solid #a855f7;
+    box-shadow: 0 15px 0 #a855f7;
+}
+
+.risk-section {
+    background-color: #ffedd5;
+    /* Pola Garis Miring (Stripes) oranye */
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #fed7aa 10px, #fed7aa 20px);
+    border: 6px solid #f97316;
+    box-shadow: 0 15px 0 #f97316;
+}
+
+.steps-section {
+    background-color: #ecfccb;
+    /* Pola Grid (Mirip buku tulis matematika) hijau lemon */
+    background-image: linear-gradient(#d9f99d 2px, transparent 2px), linear-gradient(90deg, #d9f99d 2px, transparent 2px);
+    background-size: 40px 40px;
+    border: 6px solid #84cc16;
+    box-shadow: 0 15px 0 #84cc16;
+}
+
+.quiz-section {
+    background-color: #ffe4e6;
+    /* Pola Garis Horizontal pink lembut */
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 15px, #fecdd3 15px, #fecdd3 30px);
+    border: 6px solid var(--pink-main);
+    box-shadow: 0 15px 0 var(--pink-main);
+}
+
+.subtitle {
+    margin-bottom: 40px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #8b5cf6;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    min-height: 85vh;
+    gap: 30px;
+}
+
+.hero h1 {
+    font-size: 4em;
+    color: var(--pink-main);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    /* Faux stroke putih berlapis + pop 3D pink */
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
+                 -1px 0 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff,
+                 5px 5px 0px #fecdd3;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 35px;
+    font-weight: 600;
+}
+
+/* Animasi Bounce-in (Memantul) saat halaman diload */
+@keyframes heroBounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    80% { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.hero-image {
+    animation: heroBounceIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-image img {
+    width: 380px;
+    max-width: 100%;
+    border-radius: 50%;
+    border: 8px solid white;
+    box-shadow: 0 15px 0 var(--pink-soft);
+}
+
+/* Cute Button 3D (Neo Brutalism Style) */
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--pink-main);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.4em;
+    border: 4px solid #be123c;
+    box-shadow: 0 8px 0 #be123c;
+    transition: all 0.2s ease;
+    /* Kursor Custom (Bintang) saat bisa diklik */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">✨</text></svg>'), pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #be123c;
+    background-color: var(--pink-light);
+}
+
+/* Video Container Ceria */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: 0 15px 0 var(--blue-soft);
+    background: var(--blue-main);
+}
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* Bubbly Cards */
+.card-container, .grid-container {
+    display: grid;
+    gap: 25px;
+    margin-top: 20px;
+}
+.card-container { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-container { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.card, .risk-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 35px; /* Sangat membulat */
+    border: 4px solid var(--pink-soft);
+    box-shadow: 0 10px 0 var(--pink-soft); /* Efek ketebalan 3D */
+    transition: all 0.3s;
+    /* Kursor Custom (Bintang) untuk kartu yang bisa dihover */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">✨</text></svg>'), pointer;
+}
+
+.card:hover, .risk-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 0 var(--pink-soft);
+    border-color: var(--pink-light);
+}
+
+.card i, .risk-card i {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+.icon-pink { color: var(--pink-main); }
+.icon-blue { color: var(--blue-main); }
+
+.risk-card h3 {
+    color: var(--text-color);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 2px 2px 0px rgba(0,0,0,0.05);
+}
+/* Selang-seling warna kotak Risiko */
+.risk-card:nth-child(even) { border-color: var(--blue-soft); box-shadow: 0 10px 0 var(--blue-soft); }
+.risk-card:nth-child(even):hover { border-color: var(--blue-main); box-shadow: 0 18px 0 var(--blue-soft); }
+
+/* Timeline SADARI */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.step-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 30px;
+    border: 4px solid var(--blue-soft);
+    box-shadow: 0 10px 0 var(--blue-soft);
+    text-align: left;
+    transition: all 0.3s;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">✨</text></svg>'), pointer;
+}
+.step-card:hover {
+    transform: translateX(10px) translateY(-5px);
+    box-shadow: -5px 15px 0 var(--blue-soft);
+}
+
+.step-card img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-right: 25px;
+    border: 4px solid var(--blue-main);
+}
+
+.step-text h3 {
+    color: var(--blue-main);
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    /* Faux outline putih bersih + shadow biru */
+    text-shadow: -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff, 1.5px 1.5px 0 #fff,
+                 3px 3px 0px var(--blue-soft);
+}
+
+/* Fakta Penting (Bentuk Kertas Catatan Lucu) */
+.fact-card {
+    background: var(--yellow-soft);
+    padding: 50px 30px;
+    border-radius: 40px;
+    border: 5px dashed #facc15;
+    box-shadow: 0 15px 0 #fef9c3;
+    transform: rotate(-2deg); /* Sedikit miring */
+}
+.fact-card i { font-size: 4em; color: #eab308; margin-bottom: 10px; }
+.fact-card h2 { 
+    color: #ca8a04; 
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
+                 -1px 0 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff,
+                 4px 4px 0px #fef08a;
+}
+.fact-card p { font-size: 1.3em; font-weight: bold; }
+
+/* Quiz Game Box */
+.quiz-container {
+    background: white;
+    padding: 40px;
+    border-radius: 35px;
+    border: 4px solid #ddd6fe;
+    box-shadow: 0 12px 0 #ddd6fe;
+}
+.question {
+    font-size: 1.5em;
+    font-family: 'Fredoka', sans-serif;
+    color: #6d28d9;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff,
+                 2px 2px 0px #ede9fe;
+}
+.options { display: flex; flex-direction: column; gap: 15px; }
+
+.quiz-btn {
+    padding: 18px;
+    border: 4px solid var(--blue-soft);
+    background: white;
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Quicksand', sans-serif;
+    /* Kursor custom Bintang untuk tombol kuis */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">✨</text></svg>'), pointer;
+}
+.quiz-btn:hover {
+    background: var(--blue-soft);
+    transform: scale(1.02);
+}
+
+/* Warna Tombol Quiz Benar/Salah */
+.quiz-btn.correct {
+    background: #a7f3d0;
+    border-color: #059669;
+    color: #064e3b;
+    box-shadow: 0 5px 0 #059669;
+}
+.quiz-btn.wrong {
+    background: #fecaca;
+    border-color: #e11d48;
+    color: #881337;
+    box-shadow: 0 5px 0 #e11d48;
+}
+
+.quiz-result {
+    margin-top: 25px;
+    font-size: 1.5em;
+    font-family: 'Fredoka', sans-serif;
+    min-height: 40px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Footer Menggemaskan */
+footer {
+    background: var(--pink-main);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    box-shadow: 0 -10px 0 var(--pink-soft);
+    position: relative;
+    z-index: 10; /* Memastikan footer berada di atas dekorasi */
+}
+footer h2 { 
+    color: white; 
+    text-shadow: -2px -2px 0 var(--pink-main), 2px -2px 0 var(--pink-main), -2px 2px 0 var(--pink-main), 2px 2px 0 var(--pink-main),
+                 4px 4px 0px #be123c; 
+    font-size: 1.8em; 
+    margin-bottom: 5px; 
+}
+footer p { 
+    font-size: 1.2em; 
+    font-weight: 600; 
+    color: #ffe4e6; 
+    text-shadow: -1px -1px 0px var(--pink-main), 1px -1px 0px var(--pink-main), -1px 1px 0px var(--pink-main), 1px 1px 0px var(--pink-main);
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+    section {
+        padding: 30px 15px; /* Kurangi jarak dalam */
+        margin: 20px 15px; /* Jarak aman dari pinggir layar HP */
+        border-width: 4px; 
+        box-shadow: 0 8px 0; /* Ketebalan 3D dikurangi agar tidak memakan ruang */
+        border-radius: 25px;
+    }
+    .hero, .fact-section { 
+        margin: 20px 15px; 
+    }
+    .hero { flex-direction: column; text-align: center; padding-top: 20px; }
+    
+    /* Pengecilan Font agar tidak memakan layar/terpotong */
+    .hero h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+    .hero p { font-size: 1.1em; }
+    
+    .hero-image img { width: 240px; } /* Gambar karakter diperkecil */
+    
+    /* Memaksa kartu-kartu menjadi 1 baris vertikal supaya tidak meluber ke samping (overflow) */
+    .card-container, .grid-container { grid-template-columns: 1fr; }
+    
+    .card, .risk-card, .quiz-container {
+        padding: 25px 15px;
+        border-radius: 25px;
+    }
+    
+    .step-card { flex-direction: column; text-align: center; padding: 20px; border-radius: 20px; }
+    .step-card img { margin-right: 0; margin-bottom: 15px; width: 85px; height: 85px; }
+    
+    .fact-card { transform: rotate(0deg); padding: 30px 20px; border-radius: 25px; } /* Luruskan di layar kecil */
+    .fact-card i { font-size: 3em; }
+    
+    .btn-primary { font-size: 1.1em; padding: 12px 25px; }
+    .quiz-btn { padding: 12px; font-size: 1em; }
+    
+    /* Kecilkan Maskot di HP */
+    .peeking-mascot img { width: 65px; }
+    .peeking-mascot .tooltip { font-size: 0.8em; padding: 4px 8px; }
+}
