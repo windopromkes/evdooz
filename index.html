@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang di evdooz!</title>
+    <!-- Menggunakan font Google 'Fredoka' dan 'Quicksand' untuk kesan super cute -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-page">
+
+    <!-- Dekorasi Latar Belakang Khas Duolingo -->
+    <div class="background-decorations">
+        <i class="fa-solid fa-gem decor-icon gem-1"></i>
+        <i class="fa-solid fa-star decor-icon star-1"></i>
+        <i class="fa-solid fa-leaf decor-icon leaf-1"></i>
+        <i class="fa-solid fa-crown decor-icon crown-1"></i>
+        <i class="fa-solid fa-star decor-icon star-2"></i>
+        <i class="fa-solid fa-gem decor-icon gem-2"></i>
+    </div>
+
+    <main class="hero-container">
+        <section class="hero" id="beranda">
+            <div class="hero-content">
+                <h1 class="hero-title">Kenali Tubuhmu,<br>Jaga Kesehatanmu! ✨</h1>
+                <p>Yuk, belajar cara gampang deteksi dini kanker payudara dengan <strong>evdooz</strong> (Periksa Payudara Sendiri).</p>
+                <div class="name-input-group">
+                    <input type="text" id="playerName" class="name-input" placeholder="Ketik namamu di sini...">
+                    <a href="main.html" id="startAdventureBtn" class="btn-primary">Mulai Petualangan</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="speech-bubble">Ayo mulai belajar bersamaku! 🚀</div>
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mimi&backgroundColor=ffdfed" alt="Karakter Chibi Tersenyum" class="floating">
+            </div>
+        </section>
+    </main>
+<script>
+    // Simpan nama ke penyimpanan lokal saat tombol diklik
+    document.getElementById('startAdventureBtn').addEventListener('click', function(e) {
+        const playerName = document.getElementById('playerName').value;
+        if (playerName.trim() !== '') {
+            localStorage.setItem('playerName', playerName);
+        }
+    });
+</script>
+</body>
+</html>
