@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi evdooz - Jaga Kesehatanmu!</title>
+    <!-- Menggunakan font Google 'Fredoka' dan 'Quicksand' untuk kesan super cute -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Library Canvas Confetti untuk efek menang kuis -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <nav class="game-topbar">
+        <div class="logo">
+            <i class="fa-solid fa-leaf" style="color: var(--green-main);"></i>
+            <div class="logo-text-wrapper">
+                <span>evdooz</span>
+                <small class="logo-fullname">Ervon Windo Ozi</small>
+            </div>
+        </div>
+        <div class="game-stats">
+            <div class="stat streak"><i class="fa-solid fa-fire" style="color: var(--yellow-main);"></i> <span id="streak-count">3</span></div>
+            <div class="stat gems"><i class="fa-solid fa-gem" style="color: var(--blue-main);"></i> <span id="xp-count">150</span></div>
+            <div class="stat hearts"><i class="fa-solid fa-heart" style="color: var(--red-main);"></i> <span>5</span></div>
+        </div>
+    </nav>
+
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Dekorasi Latar Belakang Khas Duolingo -->
+    <div class="background-decorations">
+        <i class="fa-solid fa-gem decor-icon gem-1"></i>
+        <i class="fa-solid fa-star decor-icon star-1"></i>
+        <i class="fa-solid fa-leaf decor-icon leaf-1"></i>
+        <i class="fa-solid fa-crown decor-icon crown-1"></i>
+        <i class="fa-solid fa-star decor-icon star-2"></i>
+        <i class="fa-solid fa-gem decor-icon gem-2"></i>
+    </div>
+
+    <section class="video-section fade-in-on-scroll" id="video">
+        <div class="floating-element" style="top: 20px; left: 20px; transform: rotate(-5deg);">Tonton sampai habis! 🎬</div>
+        <h2>Waktunya Nonton! Siapkan Camilanmu 🍿✨</h2>
+        <div class="video-wrapper">
+            <div class="video-overlay">
+                <i class="fa-solid fa-play-circle"></i>
+                <h3>Pelajaran Video</h3>
+                <p>Klik untuk melihat video animasi tentang SADARI.</p>
+                <button class="btn-primary" onclick="startVideoLesson(this)">Mulai Nonton</button>
+            </div>
+            <div class="video-container" style="display: none;">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hK6TOvgUU_4?controls=0&autoplay=1" title="Video Edukasi evdooz" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button class="btn-primary" id="finish-video-btn" style="display: none; margin-top: 25px;" onclick="unlockAndScroll('level-1')">Lanjut ke Level 1 <i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+    </section>
+
+    <section class="about-section fade-in-on-scroll locked-section" id="level-1">
+        <div class="lock-overlay">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Level 1 Terkunci</h3>
+            <p>Tonton video di atas untuk membuka!</p>
+        </div>
+        <div class="floating-element" style="top: 80px; right: -30px; transform: rotate(8deg);">Ini penting, lho! 💡</div>
+        <div class="badge-level">Level 1</div>
+        <h2>Kenalan Dulu: Kanker Payudara 🦠🔍</h2>
+        
+        <!-- Interactive Reading Game (Tap to Reveal) -->
+        <div class="interactive-reading-container">
+            <div class="reading-mascot-header">
+                <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mimi&backgroundColor=e0f2fe" alt="Mascot" class="reading-mascot">
+                <div class="reading-bubble">
+                    <p>Bantu aku melengkapi teks ini! Ketuk balok misteri biru untuk menyingkap kata rahasianya. 🕵️‍♀️✨</p>
+                </div>
+            </div>
+            
+            <div class="reveal-box">
+                <p>Kanker payudara merupakan <span class="magic-word" onclick="revealWord(this, 'tumor ganas')">???</span> pada payudara dan juga merupakan <span class="magic-word" onclick="revealWord(this, 'benjolan')">???</span> atau massa tunggal yang sering terdapat di daerah kuadran atas bagian luar.</p>
+                <p>Biasanya, ia terasa keras, bentuknya <span class="magic-word" onclick="revealWord(this, 'tidak beraturan')">???</span> dan dapat digerakkan.</p>
+                <p>Pertumbuhan sel yang <span class="magic-word" onclick="revealWord(this, 'tidak normal')">???</span> pada payudara ini adalah akibat dari perubahan bentuk, ukuran, dan fungsi yang dapat menyebar serta membahayakan organ tubuh lainnya.</p>
+            </div>
+            
+            <!-- Banner Hadiah (Muncul saat semua kata terbuka) -->
+            <div id="reveal-completion-banner" class="completion-banner" style="display: none; margin-top: 20px;">
+                🎉 Keren! Pemahaman yang luar biasa! +20 XP
+            </div>
+            <button class="btn-primary" id="next-to-level-2" style="display: none; margin-top: 15px;" onclick="unlockAndScroll('level-2')">Lanjut ke Level 2 <i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+    </section>
+
+    <section class="risk-section fade-in-on-scroll locked-section" id="level-2">
+        <div class="lock-overlay">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Level 2 Terkunci</h3>
+            <p>Selesaikan Level 1 untuk membuka!</p>
+        </div>
+        <div class="floating-element" style="bottom: 20px; left: -20px; transform: rotate(-7deg);">Ayo praktikkan! 📝</div>
+        <div class="badge-level">Level 2</div>
+        <h2>6 Langkah SADARI (Kemenkes) 🩺✨</h2>
+        <p class="subtitle">Pedoman pemeriksaan payudara sendiri menurut Kementerian Kesehatan:</p>
+
+        <!-- Interactive Story Carousel -->
+        <div class="story-carousel-container">
+            <!-- Progress Bar -->
+            <div class="story-progress-bar-container">
+                <div class="story-progress-fill" id="sadari-progress"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="story-step active" id="sadari-step-1">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #e0f2fe; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">🪞</div>
+                        <h3 style="color: var(--blue-main); margin: 0;">1. Siapkan Diri</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;"><strong>Berdirilah di depan cermin</strong> dengan posisi tegak. Lihatlah bentuk, warna, dan tekstur payudara serta apakah terdapat perubahan seperti benjolan, pembengkakan, atau perubahan bentuk.</p>
+                </div>
+            </div>
+            <div class="story-step" id="sadari-step-2">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #dcfce7; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">🙋‍♀️</div>
+                        <h3 style="color: var(--green-main); margin: 0; line-height: 1.2;">2. Periksa dgn tangan ke atas</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;"><strong>Angkat tangan kanan</strong> ke atas kepala, lalu gunakan tangan kiri untuk memeriksa payudara kanan. Gunakan ujung tiga jari tengah untuk memeriksa payudara dengan <strong>gerakan memutar</strong>. Lakukan gerakan ini dari arah luar ke dalam, mulai dari ketiak hingga ke puting susu.</p>
+                </div>
+            </div>
+            <div class="story-step" id="sadari-step-3">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fef9c3; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">🛏️</div>
+                        <h3 style="color: var(--yellow-shadow); margin: 0; line-height: 1.2;">3. Pemeriksaan saat berbaring</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;"><strong>Berbaringlah dengan posisi rileks</strong> dan letakkan satu bantal di bawah bahu kanan. Gunakan tangan kiri untuk memeriksa payudara kanan dengan gerakan yang sama seperti langkah kedua.</p>
+                </div>
+            </div>
+            <div class="story-step" id="sadari-step-4">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fee2e2; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">👆</div>
+                        <h3 style="color: var(--red-main); margin: 0; line-height: 1.2;">4. Pemeriksaan dengan menekan</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;">Berdiri atau berbaring, <strong>tekan payudara dengan lembut</strong> menggunakan ujung jari. Perhatikan apakah ada benjolan yang teraba atau perubahan lainnya.</p>
+                </div>
+            </div>
+            <div class="story-step" id="sadari-step-5">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #e0f2fe; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">💧</div>
+                        <h3 style="color: var(--blue-main); margin: 0; line-height: 1.2;">5. Periksa puting susu</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;">Perhatikan apakah ada <strong>cairan yang keluar</strong> dari puting susu. Cairan yang keluar tanpa disertai dengan menyusui, terutama darah atau cairan berwarna kehijauan atau kuning, perlu diperiksa lebih lanjut.</p>
+                </div>
+            </div>
+            <div class="story-step" id="sadari-step-6">
+                <div class="card" style="text-align: left; align-items: flex-start; cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #dcfce7; min-width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5em;">📅</div>
+                        <h3 style="color: var(--green-main); margin: 0; line-height: 1.2;">6. Lakukan secara rutin</h3>
+                    </div>
+                    <p style="font-size: 1em; color: var(--text-muted); font-weight: 600;">Lakukan pemeriksaan payudara sendiri <strong>setiap bulan</strong>, beberapa hari setelah menstruasi. Jika menemukan perubahan apa pun, segera <strong>konsultasikan dengan dokter</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Control Button -->
+            <button class="btn-primary story-next-btn" id="sadari-next-btn" onclick="nextSadariStep()">Lanjut <i class="fa-solid fa-arrow-right"></i></button>
+
+            <!-- Banner Hadiah (Muncul saat semua misi selesai) -->
+            <div id="steps-completion-banner" class="completion-banner" style="display: none; margin-top: 20px;">
+                🎉 Keren! Kamu telah memahami ke-6 langkah tersebut! +30 XP
+            </div>
+            <button class="btn-primary" id="next-to-level-3" style="display: none; margin-top: 15px;" onclick="unlockAndScroll('level-3')">Lanjut ke Level 3 <i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+    </section>
+
+    <section class="steps-section fade-in-on-scroll locked-section" id="level-3">
+        <div class="lock-overlay">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Level 3 Terkunci</h3>
+            <p>Selesaikan Level 2 untuk membuka!</p>
+        </div>
+        <div class="floating-element" style="top: 20px; right: 20px; transform: rotate(5deg);">Ayo hidup sehat! 🥦</div>
+        <div class="badge-level">Level 3</div>
+        <h2>CEGAH KANKER PAYUDARA sejak dini 🛡️✨</h2>
+        <p class="subtitle">Selesaikan rute perjalanan hidup sehatmu setiap hari!</p>
+        
+        <!-- Interactive Journey Path -->
+        <div class="duo-path-container">
+            <!-- Node 1 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-left">
+                    <button class="duo-node current" id="node-1" onclick="openNode(1)">📅</button>
+                </div>
+                <div class="node-popup" id="node-popup-1">
+                    <h3 style="color: var(--blue-main); margin-bottom: 10px;">1. Rutin SADARI</h3>
+                    <p style="margin-bottom: 15px;">Lakukan SADARI secara rutin setiap bulan.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(1)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 2 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-center">
+                    <button class="duo-node" id="node-2" onclick="openNode(2)">🥗</button>
+                </div>
+                <div class="node-popup" id="node-popup-2">
+                    <h3 style="color: var(--green-main); margin-bottom: 10px;">2. Makan Bergizi</h3>
+                    <p style="margin-bottom: 15px;">Perbanyak makan sayur, buah dan makanan bergizi seimbang.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(2)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 3 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-right">
+                    <button class="duo-node" id="node-3" onclick="openNode(3)">🏃‍♀️</button>
+                </div>
+                <div class="node-popup" id="node-popup-3">
+                    <h3 style="color: var(--yellow-shadow); margin-bottom: 10px;">3. Aktif Bergerak</h3>
+                    <p style="margin-bottom: 15px;">Rutin berolahraga atau aktif bergerak.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(3)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 4 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-center">
+                    <button class="duo-node" id="node-4" onclick="openNode(4)">⚖️</button>
+                </div>
+                <div class="node-popup" id="node-popup-4">
+                    <h3 style="color: var(--red-main); margin-bottom: 10px;">4. Jaga Berat Badan</h3>
+                    <p style="margin-bottom: 15px;">Jaga berat badan ideal.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(4)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 5 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-left">
+                    <button class="duo-node" id="node-5" onclick="openNode(5)">🚭</button>
+                </div>
+                <div class="node-popup" id="node-popup-5">
+                    <h3 style="color: #a855f7; margin-bottom: 10px;">5. Hindari Rokok</h3>
+                    <p style="margin-bottom: 15px;">Hindari rokok dan minuman beralkohol.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(5)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 6 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-center">
+                    <button class="duo-node" id="node-6" onclick="openNode(6)">🧘‍♀️</button>
+                </div>
+                <div class="node-popup" id="node-popup-6">
+                    <h3 style="color: #f97316; margin-bottom: 10px;">6. Pikiran Sehat</h3>
+                    <p style="margin-bottom: 15px;">Pikiran sehat (positif thinking).</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(6)">Paham!</button>
+                </div>
+            </div>
+            <!-- Node 7 -->
+            <div class="duo-node-wrapper">
+                <div class="node-mover step-right">
+                    <button class="duo-node" id="node-7" onclick="openNode(7)">🏥</button>
+                </div>
+                <div class="node-popup" id="node-popup-7">
+                    <h3 style="color: var(--blue-main); margin-bottom: 10px;">7. Periksa Berkala</h3>
+                    <p style="margin-bottom: 15px;">Periksa kesehatan secara berkala ke fasilitas kesehatan.</p>
+                    <button class="btn-primary" style="font-size: 1.1em; padding: 12px 25px;" onclick="completeNode(7)">Selesai Misi!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Hadiah (Muncul saat semua titik dilewati) -->
+        <div id="path-completion-banner" class="completion-banner" style="display: none; margin-top: 20px;">
+            🎉 Petualangan Selesai! Kamu jadi pahlawan kesehatan! +50 XP
+        </div>
+        <button class="btn-primary" id="next-to-boss-level" style="display: none; margin-top: 15px;" onclick="unlockAndScroll('level-boss')">Lanjut ke Boss Level <i class="fa-solid fa-arrow-down"></i></button>
+    </section>
+
+    <section class="fact-section fade-in-on-scroll">
+        <div class="game-card fact-card floating">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h2>Fakta Penting!</h2>
+            <p>"Semakin cepat ditemukan, semakin besar peluang penanganan yang baik dan kesembuhannya."</p>
+        </div>
+    </section>
+
+    <section class="quiz-section fade-in-on-scroll locked-section" id="level-boss">
+        <div class="lock-overlay">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Boss Level Terkunci</h3>
+            <p>Selesaikan semua misi untuk ujian akhir!</p>
+        </div>
+        <div class="floating-element" style="top: 80px; left: -40px; transform: rotate(-10deg);">Uji pengetahuanmu! 🧠</div>
+        <div class="badge-level">Boss Level</div>
+        <h2>Tantangan Akhir! Uji Otakmu 🏆🚀</h2>
+        <div class="quiz-container">
+            <p class="question">Kapan waktu yang paling tepat untuk melakukan evdooz?</p>
+            <div class="options">
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">A. Setiap hari sebelum mandi</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, true)">B. Hari ke-7 sampai ke-10 setelah menstruasi</button>
+                <button class="quiz-btn" onclick="checkAnswer(this, false)">C. Setahun sekali saat ulang tahun</button>
+            </div>
+            <div id="quiz-result" class="quiz-result"></div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>❤️ Website Edukasi Kesehatan - evdooz ❤️</h2>
+        <p><small>Dibuat khusus untuk penelitian tentang SADARI</small></p>
+        <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Star&backgroundColor=ffd1dc" alt="Star Chibi" width="60" class="floating" style="margin-top: 15px; border-radius: 50%;">
+    </footer>
+
+    <div class="peeking-mascot" id="backToTop" onclick="scrollToTop()">
+        <div class="tooltip">Ke Atas! 🚀</div>
+        <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Lucky&backgroundColor=cce7ff" alt="Maskot">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
